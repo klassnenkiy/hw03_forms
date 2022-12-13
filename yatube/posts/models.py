@@ -19,9 +19,8 @@ class Post(models.Model):
     )
 
     def __str__(self):
-        # выводим текст поста 
         return self.text
-        
+
     class Meta:
         ordering = ['-pub_date']
         default_related_name = 'posts'
@@ -34,6 +33,3 @@ class Group(models.Model):
 
     def __str__(self):
         return self.title
-
-
-

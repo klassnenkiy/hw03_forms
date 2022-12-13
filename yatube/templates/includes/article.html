@@ -7,5 +7,6 @@
       Дата публикации: {{ post.pub_date|date:"d E Y" }}
     </li>
   </ul>
-    <p>{{ post.text }}</p>    
+    <p>{{ post.text }}</p>
+    <a href="{% url 'posts:post_detail' post.id %}">подробная информация</a>    
 </article>
