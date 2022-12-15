@@ -10,11 +10,8 @@ from .models import Group, Post, User
 
 def index(request):
     posts = Post.objects.select_related('author', 'group')
-    paginator = Paginator(posts, COUNT_POSTS)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     context = {
-        'page_obj': page_obj,
+        'page_obj': page_navigator(request, posts),
     }
     return render(request, 'posts/index.html', context)
 
@@ -22,12 +19,9 @@ def index(request):
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.select_related('author')
-    paginator = Paginator(posts, COUNT_POSTS)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     context = {
         'group': group,
-        'page_obj': page_obj,
+        'page_obj': page_navigator(request, posts),
     }
     return render(request, 'posts/group_list.html', context)
 
@@ -35,12 +29,9 @@ def group_posts(request, slug):
 def profile(request, username):
     author = get_object_or_404(User, username=username)
     posts = author.posts.select_related('group')
-    paginator = Paginator(posts, COUNT_POSTS)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     context = {
         'author': author,
-        'page_obj': page_obj,
+        'page_obj': page_navigator(request, posts),
     }
     return render(request, 'posts/profile.html', context)
 
@@ -83,3 +74,8 @@ def post_edit(request, post_id):
         'is_edit': True
     }
     return render(request, 'posts/create_post.html', context)
+
+
+def page_navigator(request, posts):
+    return Paginator(posts,
+    COUNT_POSTS).get_page(request.GET.get('page'))

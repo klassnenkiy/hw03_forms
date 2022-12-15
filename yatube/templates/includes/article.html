@@ -1,8 +1,8 @@
 <article>
   <ul> 
     <li>
-      Автор: {{ post.author.get_full_name }} 
       {% if not hide_author %}
+      Автор: {{ post.author.get_full_name }} 
       <a href="{% url 'posts:profile' post.author.username %}">
       все посты пользователя</a>
       {% endif %}
