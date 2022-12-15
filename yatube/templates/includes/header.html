@@ -4,7 +4,8 @@
   <nav class="navbar navbar-light" style="background-color: lightskyblue">
     <div class="container">
       <a class="navbar-brand" href="{% url 'posts:index' %}">
-        <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="{% static 'img/logo.png' %}" width="30" height="30" 
+        class="d-inline-block align-top" alt="">
         <span style="color:red">Ya</span>tube
       </a>
       <ul class="nav nav-pills">
@@ -32,7 +33,8 @@
           <a class="nav-link link-light
           {% if view_name  == 'users:password_change' %}
           active
-        {% endif %}" href="{% url 'users:password_change' %}">Изменить пароль</a>
+        {% endif %}" 
+        href="{% url 'users:password_change' %}">Изменить пароль</a>
         </li>
         <li class="nav-item"> 
           <a class="nav-link link-light {% if view_name  == 'users:logout' %}
@@ -46,16 +48,15 @@
         <li class="nav-item"> 
           <a class="nav-link link-light {% if view_name  == 'users:logout' %}
           active
-        {% endif %}" href="{% url 'users:login' %}" href="{% url 'users:login' %}">Войти</a>
+        {% endif %}" href="{% url 'users:login' %}">Войти</a>
         </li>
         <li class="nav-item"> 
-          <a class="nav-link link-light {% if view_name  == 'users:logout' %}
+          <a class="nav-link link-light {% if view_name  == 'users:signup' %}
           active
-        {% endif %}" href="{% url 'users:signup' %}" href="{% url 'users:signup' %}">Регистрация</a>
+        {% endif %}" href="{% url 'users:signup' %}">Регистрация</a>
         </li>
         {% endif %}
       </ul>
-      {# Конец добавленого в спринте #}
     </div>
   </nav>      
 </header>
